@@ -13,24 +13,12 @@ class JSonObject(GSonObject):
     }
     
     def __init__(self, anyJsonString):
-        self.dictionary = GSonObject.fromJson(anyJsonString)
+        self.dictionary = self.fromJson(anyJsonString)
     
-    def fromJson(self, anyJsonString):
-        self.dictionary = GSonObject.fromJson(self, anyJsonString)
-        return self.dictionary
-
-    def toJson(self, anyDictionaryObj):
-        anyString = None
-        try:
-            anyString = GSonObject.toJson(self, anyDictionaryObj)
-        except:
-            anyString = None  
-        return anyString
-
     def toJson(self):
         anyString = None
         try:
-            anyString = GSonObject.toJson(self, self.dictionary)
+            anyString = self.toJson(self, self.dictionary)
         except:
             anyString = None  
         return anyString    
