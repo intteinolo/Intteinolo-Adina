@@ -14,7 +14,7 @@ class JSonObject(GSonObject):
     
     def __init__(self, anyJsonString):
         self.dictionary = self.fromJson(anyJsonString)
-    
+            
     def toJson(self):
         anyString = None
         try:
