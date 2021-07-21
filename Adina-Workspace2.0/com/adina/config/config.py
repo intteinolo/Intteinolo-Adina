@@ -3,7 +3,7 @@ import logging
 import sys
 from typing import Text
 from com.adina.utilities.Utilities import Utilities
-from com.adina.utilities.Logger import Logger
+from com.adina.utilities.LoggerFactory import LoggerFactory
 from pathlib import Path 
 
 class Configuration():    
@@ -49,7 +49,7 @@ class Configuration():
     def getLoggingNames(self) -> list:
         return self.__configuration["loggingNames"]
     
-    def getLogger(self, logName) -> Logger:
+    def getLogger(self, logName) -> LoggerFactory:
         try:
             myLogger = None
             for element in self.getLoggingNames:
@@ -63,10 +63,10 @@ class Configuration():
                         logLevel = logging.ERROR
                     elif element["logLevel"].upper() == "FATAL":
                         logLevel = logging.FATAL
-                    myLogger = Logger(logName, logLevel)
+                    myLogger =  LoggerFactory(logName, logLevel)
                     break
         except:
-            myLogger = Logger("Adina", logging.DEBUG)    
+            myLogger = LoggerFactory("Adina", logging.DEBUG)    
             myLogger.logger.warn(sys.exc_info()[0])
         return myLogger
 

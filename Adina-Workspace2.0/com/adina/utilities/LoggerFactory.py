@@ -5,7 +5,7 @@ from typing import Text
 from datetime import datetime
 from pathlib import Path 
 
-class Logger():
+class LoggerFactory():
 
     def __init__(self, logName, logLevel) -> None:
         self.__logName = logName
@@ -31,6 +31,17 @@ class Logger():
     def logName(self) -> Text:
         return self.__logName
 
-    @property
-    def logger(self) -> logging.LoggerAdapter:
-        return self.__logger
+    def debug(self, anyString) ->  None:
+        self.__logger.debug(anyString)
+
+    def info(self, anyString) -> None:
+        self.__logger.info(anyString)
+
+    def warn(self, anyString) -> None:
+        self.__logger.warn(anyString)
+
+    def error(self, anyString) -> None:
+        self.__logger.error(anyString)
+
+    def fatal(self, anyString) -> None:
+        self.__logger.fatal(anyString)

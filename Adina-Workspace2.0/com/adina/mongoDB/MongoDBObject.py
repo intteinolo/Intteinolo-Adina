@@ -1,4 +1,4 @@
-from com.adina.utilities.Logger import Logger
+from com.adina.utilities.LoggerFactory import LoggerFactory
 import sys
 import pymongo
 import certifi
@@ -31,8 +31,8 @@ class MongoDBObject():
         self.__errorDescription = ""
 
     @property
-    def mongoDBlogger(self) -> Logger:
-        return self.__mongoDBlogger.logger
+    def mongoDBlogger(self) -> LoggerFactory:
+        return self.__mongoDBlogger
 
     def __resetError(self) -> None:
         self.__errorFlag = False
@@ -55,10 +55,10 @@ class MongoDBObject():
         try:
             self.__connectedDataBase = self.__mongoClient.get_database(dataBaseName)
             self.__resetError()
-            self.__mongoDBlogger.logger.debug(f"Connected to {dataBaseName} database.")
+            self.__mongoDBlogger.debug(f"Connected to {dataBaseName} database.")
             return True
         except:
-            self.__mongoDBlogger.logger.error(f"An error ocurrs connecting to {dataBaseName} data base." + " --> " + sys.exc_info()[0])
+            self.__mongoDBlogger.error(f"An error ocurrs connecting to {dataBaseName} data base." + " --> " + sys.exc_info()[0])
             self.__raiseError(f"An error ocurrs connecting to {dataBaseName} data base.")
             self.__connectedDataBase = None
             return False
@@ -70,12 +70,12 @@ class MongoDBObject():
         try:
             collectionNames = self.__connectedDataBase.list_collection_names()
         except:
-            self.__mongoDBlogger.logger.error(f"An error ocurrs (createCollection)." + " --> " + sys.exc_info()[0])
+            self.__mongoDBlogger.error(f"An error ocurrs (createCollection)." + " --> " + sys.exc_info()[0])
             return None
     
     def showCollections(self) -> List:
         try:
             return self.__connectedDataBase.list_collection_names()
         except:
-            self.__mongoDBlogger.logger.error(f"An error ocurrs (showCollections)." + " --> " + sys.exc_info()[0])
+            self.__mongoDBlogger.error(f"An error ocurrs (showCollections)." + " --> " + sys.exc_info()[0])
             return None

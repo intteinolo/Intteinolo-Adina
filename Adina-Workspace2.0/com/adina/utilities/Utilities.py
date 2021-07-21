@@ -6,7 +6,7 @@ import logging.config
 from typing import Text
 from pathlib import Path 
 from datetime import datetime
-from com.adina.utilities.Logger import Logger
+from com.adina.utilities.LoggerFactory import LoggerFactory
 
 class Utilities:
 
@@ -16,7 +16,7 @@ class Utilities:
         print(os.name)
         print(os.uname())
         self.mkdirs(self.__rootPath + "/Adina/Logs")
-        self.__logger = Logger("Adina", logging.DEBUG)
+        self.__logger = LoggerFactory("Adina", logging.DEBUG)
 
     @property
     def rootPath(self) -> Text:
@@ -77,7 +77,7 @@ class Utilities:
     def writeJSonToFile(self, fileName, anyDictionaryObj) -> bool:
         try:
             with open(fileName, "w") as fileObject:
-                json.dump(anyDictionaryObj, fileObject)
+                json.dump(anyDictionaryObj, fileObject, ensure_ascii=True, indent=4, sort_keys=True)
             return True    
         except:
             logging.error(sys.exc_info()[0])
