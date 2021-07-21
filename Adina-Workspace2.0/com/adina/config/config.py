@@ -51,10 +51,8 @@ class Configuration():
     
     def getLogger(self, logName) -> Logger:
         try:
-            logger = None
-            # logger = Logger("Adina", logging.DEBUG)
+            myLogger = None
             for element in self.getLoggingNames:
-                print(type(element))
                 logLevel = logging.DEBUG
                 if element["logName"] == logName:                    
                     if element["logLevel"].upper() == "INFO":
@@ -65,12 +63,12 @@ class Configuration():
                         logLevel = logging.ERROR
                     elif element["logLevel"].upper() == "FATAL":
                         logLevel = logging.FATAL
-                    logger = Logger(logName, logLevel)
+                    myLogger = Logger(logName, logLevel)
                     break
         except:
-            print(sys.exc_info()[0])
-            logger = Logger("Adina", logging.DEBUG)    
-        return logger
+            myLogger = Logger("Adina", logging.DEBUG)    
+            myLogger.logger.warn(sys.exc_info()[0])
+        return myLogger
 
 """
 def getLoggingConfiguration(self, logFileName) -> dict:

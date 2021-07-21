@@ -17,16 +17,21 @@ mongoLogger.logger.error("Error - Mensaje de Mongo")
 mongoLogger.logger.fatal("Fatal - Mensaje de Mongo")
 """
 
+#"""
 mongoDBObject = MongoDBObject("mongodb+srv://AdinaAdm:SpulBly5BuiSKD0m@cluster0.0squg.gcp.mongodb.net")
 print(type(mongoDBObject))
 print(mongoDBObject.mongoClient().list_database_names())
 print(mongoDBObject.connectToDatabase("Adina2021"))
 print(mongoDBObject.connectedDataBase().name)
 print(mongoDBObject.showCollections())
+mongoDBObject.mongoDBlogger.debug("Linea de Debug")
+mongoDBObject.mongoDBlogger.info("Linea de Info")
+mongoDBObject.mongoDBlogger.warn("Linea de Warn")
+mongoDBObject.mongoDBlogger.error("Linea de Error")
+mongoDBObject.mongoDBlogger.fatal("Linea de Fatal")
+#"""
 
-
-
-"""
+#"""
 utilities = Utilities()
 print(utilities.rootPath)
 utilities.debug("Debug message")
@@ -34,4 +39,4 @@ utilities.info("Info message")
 utilities.warn("Warn message")
 utilities.error("Error message")
 utilities.fatal("Fatal message")
-"""
+#"""

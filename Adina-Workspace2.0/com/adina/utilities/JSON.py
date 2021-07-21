@@ -1,3 +1,4 @@
+from typing import Text
 from com.adina.utilities.GSON import GSonObject
 import json
 
@@ -7,18 +8,21 @@ mongoDB documents
 """
 
 class JSonObject(GSonObject):   
-
-    dictionary = {
-        "isEmpty": True
-    }
     
     def __init__(self, anyJsonString):
-        self.dictionary = self.fromJson(anyJsonString)
+        self.__dictionary = {
+            "isEmpty": True
+        }
+        self.__dictionary = self.fromJson(anyJsonString)
             
-    def toJson(self):
+    def toJson(self) -> Text:
         anyString = None
         try:
-            anyString = self.toJson(self, self.dictionary)
+            anyString = self.toJson(self, self.__dictionary)
         except:
             anyString = None  
         return anyString    
+
+    @property
+    def dictionary(self) -> dict:
+        return self.__dictionary

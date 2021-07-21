@@ -1,4 +1,5 @@
 import json
+from typing import Text
 
 """
 This class has two methods to work with JSON notation.
@@ -8,7 +9,7 @@ toJson - receives a dictionary object and converts it to a JSon valid string.
 
 class GSonObject:   
 
-    def fromJson(self, anyJsonString):
+    def fromJson(self, anyJsonString) -> dict:
         dictionary = None
         try:
             dictionary = json.loads(anyJsonString)
@@ -16,7 +17,7 @@ class GSonObject:
             dictionary = None
         return dictionary
 
-    def toJson(self, anyDictionaryObj):
+    def toJson(self, anyDictionaryObj) -> Text:
         anyString = None
         try:
             anyString = json.dumps(anyDictionaryObj)

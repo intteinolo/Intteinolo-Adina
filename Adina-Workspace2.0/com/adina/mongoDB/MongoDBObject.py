@@ -1,3 +1,4 @@
+from com.adina.utilities.Logger import Logger
 import sys
 import pymongo
 import certifi
@@ -29,6 +30,10 @@ class MongoDBObject():
         self.__errorFlag = False
         self.__errorDescription = ""
 
+    @property
+    def mongoDBlogger(self) -> Logger:
+        return self.__mongoDBlogger.logger
+
     def __resetError(self) -> None:
         self.__errorFlag = False
         self.__errorDescription = ""
@@ -50,7 +55,7 @@ class MongoDBObject():
         try:
             self.__connectedDataBase = self.__mongoClient.get_database(dataBaseName)
             self.__resetError()
-            self.__mongoDBlogger.logger.debug(f"Connected to {dataBaseName} data base.")
+            self.__mongoDBlogger.logger.debug(f"Connected to {dataBaseName} database.")
             return True
         except:
             self.__mongoDBlogger.logger.error(f"An error ocurrs connecting to {dataBaseName} data base." + " --> " + sys.exc_info()[0])
