@@ -20,7 +20,10 @@ class Configuration():
             "loggingNames": [
                 {"logName": "Adina", "logLevel": "DEBUG"},
                 {"logName": "MongoDB", "logLevel": "DEBUG"}
-            ]            
+            ],
+            "dataBaseConnections": [
+                {"connectionName": "MongoServerOne", "uri": {"srv": "mongodb+srv://", "user": "AdinaAdm", "password": "SpulBly5BuiSKD0m", "cluster": "@cluster0.0squg.gcp.mongodb.net/", "dataBase": "Adina2021"}}
+            ]        
         }
         self.__createStructure()
 
@@ -49,6 +52,21 @@ class Configuration():
     def getLoggingNames(self) -> list:
         return self.__configuration["loggingNames"]
     
+    @property
+    def getDataBaseConnections(self) -> list:
+        return self.__configuration["dataBaseConnections"]
+
+    def getDataBaseConnection(self, connectionName) -> dict:
+        myConnection = None
+        try:
+            for element in self.getDataBaseConnections:
+                if element["connectionName"] == connectionName:
+                    myConnection = element
+                    break
+        except:
+            self.__utilities.warn(sys.exc_info()[0])
+        return myConnection
+            
     def getLogger(self, logName) -> LoggerFactory:
         try:
             myLogger = None

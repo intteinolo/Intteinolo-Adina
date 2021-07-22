@@ -1,7 +1,13 @@
-from com_utilities_adina.JSON import JSonObject
-from com_utilities_adina.MasterObject import MasterObject
-from com_businessRules_adina.AdinaObjects import User, DocumentType
+from com.adina.config.config import Configuration
+from com.adina.utilities.JSON import JSonObject
+from com.adina.utilities.MasterObject import MasterObject
+from com.adina.businessRules.AdinaObjects import User, DocumentType
+from com.adina.utilities.Utilities import Utilities
 from itertools import permutations, combinations
+
+adinaConfiguration = Configuration()
+print(adinaConfiguration.appPath())
+print(adinaConfiguration.logPath())
 
 persona = JSonObject('{"firstName": "Carlos", "middleName": "Eduardo", "lastName": "Rodriguez", "telefonos": [{"tipo": "movil", "numero": "4422866800"}, {"tipo": "movil", "numero": "5532424474"}]}')
 

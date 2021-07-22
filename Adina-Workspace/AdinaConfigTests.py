@@ -18,17 +18,18 @@ mongoLogger.logger.fatal("Fatal - Mensaje de Mongo")
 """
 
 #"""
-mongoDBObject = MongoDBObject("mongodb+srv://AdinaAdm:SpulBly5BuiSKD0m@cluster0.0squg.gcp.mongodb.net")
-print(type(mongoDBObject))
-print(mongoDBObject.mongoClient().list_database_names())
-print(mongoDBObject.connectToDatabase("Adina2021"))
-print(mongoDBObject.connectedDataBase().name)
-print(mongoDBObject.showCollections())
-mongoDBObject.mongoDBlogger.debug("Linea de Debug")
-mongoDBObject.mongoDBlogger.info("Linea de Info")
-mongoDBObject.mongoDBlogger.warn("Linea de Warn")
-mongoDBObject.mongoDBlogger.error("Linea de Error")
-mongoDBObject.mongoDBlogger.fatal("Linea de Fatal")
+# "mongodb+srv://AdinaAdm:SpulBly5BuiSKD0m@cluster0.0squg.gcp.mongodb.net"
+mongoServerOne = MongoDBObject("MongoServerOne")
+print(type(mongoServerOne))
+print(mongoServerOne.mongoClient().list_database_names())
+print(mongoServerOne.connectToDatabase("Adina2021"))
+print(mongoServerOne.connectedDataBase().name)
+print(mongoServerOne.showCollections())
+mongoServerOne.mongoDBlogger.debug("Linea de Debug")
+mongoServerOne.mongoDBlogger.info("Linea de Info")
+mongoServerOne.mongoDBlogger.warn("Linea de Warn")
+mongoServerOne.mongoDBlogger.error("Linea de Error")
+mongoServerOne.mongoDBlogger.fatal("Linea de Fatal")
 #"""
 
 #"""
