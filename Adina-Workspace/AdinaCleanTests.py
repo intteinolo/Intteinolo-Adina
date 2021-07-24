@@ -12,6 +12,7 @@ completefilename = pathname + filename
 file = open(pathname + filename, encoding="utf8")
 text = file.read()
 words = list(map(str, text.split()))
+print(len(words))
 file.close()
 
 # # Se definen las clases de los diccionarios para propósitos de la prueba
@@ -75,26 +76,103 @@ registro.pages = list_paginas
 # print(registro["pages"])
 
 # print(registro.toJson())
+# print(len(registro.pages))
+# print(type(registro.pages[0]['pageContent']))
+
 
 # # Pruebas de la bibliteca AdinaCleanText
 
-json_ejemplo = registro.toJson()
+metodosLimpieza = CleanOptions()
 
-# print(registro.pages[0])
-# print(len(registro.pages[0]))
+list_paginas = metodosLimpieza.getTextfromDocument(registro)
 
-# print(registro.pages[0]['pageContent'])
+#print(list_paginas)
 
-print(type(registro.pages[0]['pageContent']))
+# # Las pruebas se realizarán por página
 
-# metodosLimpieza = CleanOptions()
+tex_aux = list_paginas[0]
+#print(tex_aux)
 
-# print(metodosLimpieza.getTextfromDocument())
+# # Conversión a minúsculas
+tex_aux = metodosLimpieza.toMinusculas(tex_aux)
+#print(tex_aux)
+
+# # Tratamiento ortográfico
+tex_aux = metodosLimpieza.limpiezaAcentos(tex_aux)
+#print(tex_aux)
+
+# # Manejo de signos de puntuación y carácteres especiales
+tex_aux = metodosLimpieza.limpiezaCaracteresEspeciales(tex_aux)
+
+# tex_aux = tex_aux.replace(" a ", " ")
+# tex_aux = tex_aux.replace(" e ", " ")
+# tex_aux = tex_aux.replace(" i ", " ")
+# tex_aux = tex_aux.replace(" o ", " ")
+# tex_aux = tex_aux.replace(" u ", " ")
+# tex_aux = tex_aux.replace(" y ", " ")
+# tex_aux = tex_aux.replace(" 0 ", " ")
+# tex_aux = tex_aux.replace(" 1 ", " ")
+# tex_aux = tex_aux.replace(" 2 ", " ")
+# tex_aux = tex_aux.replace(" 3 ", " ")
+# tex_aux = tex_aux.replace(" 4 ", " ")
+# tex_aux = tex_aux.replace(" 5 ", " ")
+# tex_aux = tex_aux.replace(" 6 ", " ")
+# tex_aux = tex_aux.replace(" 7 ", " ")
+# tex_aux = tex_aux.replace(" 8 ", " ")
+# tex_aux = tex_aux.replace(" 9 ", " ")
+
+# tex_aux = tex_aux.replace("  ", " ")
+
+# #print(tex_aux)
 
 
 
 
+# import nltk
+# nltk.download('stopwords')
 
+# split into sentences
+#from nltk import sent_tokenize
+#sentences = sent_tokenize(tex_aux)
+#print(sentences[0])
+
+# split into words
+# from nltk.tokenize import word_tokenize
+# tokens = word_tokenize(tex_aux)
+# print(tokens[:100])
+
+from nltk.corpus import stopwords
+stop_words = stopwords.words('spanish')
+print(len(stop_words))
+bad_words = []
+
+
+
+# stop_words.append("i")
+# stop_words.append("u")
+# stop_words.append("bajo")
+# stop_words.append("si")
+# stop_words.append("cabe")
+
+# for i in range(len(stop_words)):
+
+#     if stop_words[i] == 'sí':
+#         print(stop_words[i])
+
+#     if stop_words[i] == 'no':
+#         print(stop_words[i])
+
+#     if stop_words[i] == 'cabe':
+#         print(stop_words[i])
+
+#     if stop_words[i] == 'contra':
+#         print(stop_words[i])
+
+#     if stop_words[i] == 'de':
+#         print(stop_words[i])
+
+#     if stop_words[i] == 'durante':
+#         print(stop_words[i])
 
 
 
