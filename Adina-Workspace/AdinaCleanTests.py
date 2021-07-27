@@ -84,14 +84,20 @@ registro.pages = list_paginas
 
 metodosLimpieza = CleanOptions()
 
+# # Genera una lista con el contenido de las páginas de un registro
 list_paginas = metodosLimpieza.getTextfromDocument(registro)
-
 #print(list_paginas)
 
 # # Las pruebas se realizarán por página
-
 tex_aux = list_paginas[0]
 #print(tex_aux)
+
+# # Obtener listado de parrafos de un string
+list_oraciones = metodosLimpieza.getParrafos(tex_aux)
+#print(list_oraciones)
+# for i in range(len(list_oraciones)):
+    
+#     print('\n', list_oraciones[i])
 
 # # Conversión a minúsculas
 tex_aux = metodosLimpieza.toMinusculas(tex_aux)
@@ -103,76 +109,30 @@ tex_aux = metodosLimpieza.limpiezaAcentos(tex_aux)
 
 # # Manejo de signos de puntuación y carácteres especiales
 tex_aux = metodosLimpieza.limpiezaCaracteresEspeciales(tex_aux)
+#print(tex_aux)
 
-# tex_aux = tex_aux.replace(" a ", " ")
-# tex_aux = tex_aux.replace(" e ", " ")
-# tex_aux = tex_aux.replace(" i ", " ")
-# tex_aux = tex_aux.replace(" o ", " ")
-# tex_aux = tex_aux.replace(" u ", " ")
-# tex_aux = tex_aux.replace(" y ", " ")
-# tex_aux = tex_aux.replace(" 0 ", " ")
-# tex_aux = tex_aux.replace(" 1 ", " ")
-# tex_aux = tex_aux.replace(" 2 ", " ")
-# tex_aux = tex_aux.replace(" 3 ", " ")
-# tex_aux = tex_aux.replace(" 4 ", " ")
-# tex_aux = tex_aux.replace(" 5 ", " ")
-# tex_aux = tex_aux.replace(" 6 ", " ")
-# tex_aux = tex_aux.replace(" 7 ", " ")
-# tex_aux = tex_aux.replace(" 8 ", " ")
-# tex_aux = tex_aux.replace(" 9 ", " ")
+# # Separación por palabras
+list_aux = metodosLimpieza.separarPalabras(tex_aux)
+#print(list_aux[:30])
 
-# tex_aux = tex_aux.replace("  ", " ")
+# # Eliminación de preposiciones del español
+list_aux = metodosLimpieza.eliminacionPreposiciones(list_aux)
+print(list_aux[:30])
 
-# #print(tex_aux)
-
-
+# # Reducción de palabras a la raíz
+list_aux = metodosLimpieza.palabrasToRaiz(list_aux)
+print(list_aux[:30])
 
 
 # import nltk
 # nltk.download('stopwords')
 
-# split into sentences
-#from nltk import sent_tokenize
-#sentences = sent_tokenize(tex_aux)
-#print(sentences[0])
-
-# split into words
-# from nltk.tokenize import word_tokenize
-# tokens = word_tokenize(tex_aux)
-# print(tokens[:100])
-
-from nltk.corpus import stopwords
-stop_words = stopwords.words('spanish')
-print(len(stop_words))
-bad_words = []
 
 
 
-# stop_words.append("i")
-# stop_words.append("u")
-# stop_words.append("bajo")
-# stop_words.append("si")
-# stop_words.append("cabe")
-
-# for i in range(len(stop_words)):
-
-#     if stop_words[i] == 'sí':
-#         print(stop_words[i])
-
-#     if stop_words[i] == 'no':
-#         print(stop_words[i])
-
-#     if stop_words[i] == 'cabe':
-#         print(stop_words[i])
-
-#     if stop_words[i] == 'contra':
-#         print(stop_words[i])
-
-#     if stop_words[i] == 'de':
-#         print(stop_words[i])
-
-#     if stop_words[i] == 'durante':
-#         print(stop_words[i])
+#
+#stemmed = [porter.stem(word) for word in list_aux]
+#print(stemmed[:100])
 
 
 
