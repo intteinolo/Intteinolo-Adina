@@ -12,7 +12,6 @@ completefilename = pathname + filename
 file = open(pathname + filename, encoding="utf8")
 text = file.read()
 words = list(map(str, text.split()))
-print(len(words))
 file.close()
 
 # # Se definen las clases de los diccionarios para propósitos de la prueba
@@ -92,61 +91,33 @@ list_paginas = metodosLimpieza.getTextfromDocument(registro)
 tex_aux = list_paginas[0]
 #print(tex_aux)
 
-# # Obtener listado de parrafos de un string
-#list_oraciones = metodosLimpieza.getParrafos(tex_aux)
-#print(list_oraciones)
-# for i in range(len(list_oraciones)):
-    
-#     print('\n', list_oraciones[i])
-
-# # Conversión a minúsculas
-#tex_aux = metodosLimpieza.toMinusculas(tex_aux)
-#print(tex_aux)
-
-# # Tratamiento ortográfico
-#tex_aux = metodosLimpieza.limpiezaAcentos(tex_aux)
-#print(tex_aux)
-
-# # Manejo de signos de puntuación y carácteres especiales
-#tex_aux = metodosLimpieza.limpiezaCaracteresEspeciales(tex_aux)
-#print(tex_aux)
-
-# # Separación por palabras
-#list_aux = metodosLimpieza.separarPalabras(tex_aux)
+# # Rutina de limpieza completa
+list_aux = metodosLimpieza.rutinaLimpieza(tex_aux)
 #print(list_aux[:30])
-# print(len(list_aux))
-
-# # Eliminación de preposiciones del español
-#list_aux = metodosLimpieza.eliminacionPreposiciones(list_aux)
-#print(list_aux[:30])
-# print(len(list_aux))
-
-# # # Identifica idioma, descarta palabras que no estén en español
-# list_aux = metodosLimpieza.identificaIdioma(list_aux)
-# print(len(list_aux))
-
-# # Eliminación de abreviaturas
-#list_aux = metodosLimpieza.eliminacionAbreviaturas(list_aux)
-#print(list_aux[:30])
-# print(len(list_aux))
-
-# # Lemmatización de las palabras
-#list_aux = metodosLimpieza.lematizacionPalabras(list_aux)
-#print(list_aux[:30])
-
-# # Reducción de palabras a la raíz
-#list_aux = metodosLimpieza.palabrasToRaiz(list_aux)
-#print(list_aux[:30])
+#print(len(list_aux))
 
 # # La lista se depura a valores únicos
 #list_aux = metodosLimpieza.valoresUnicos(list_aux)
 # print(list_aux[:30])
 # print(len(list_aux))
 
-# # Rutina de limpieza completa
-list_aux = metodosLimpieza.rutinaLimpieza(tex_aux)
-print(list_aux[:30])
-print(len(list_aux))
+from collections import Counter
+
+counts = Counter(list_aux)
+
+
+labels, values = zip(*counts.items())
+
+print(values)
+
+
+
+
+
+
+
+
+
 
 
 
